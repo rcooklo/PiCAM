@@ -1,0 +1,75 @@
+from flask import Flask, render_template, redirect
+import os
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  import socket
+  s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  s.connect(("8.8.8.8", 80))
+  #print(s.getsockname()[0])
+  hostIP = (s.getsockname()[0])
+  #print(hostIP)
+  s.close()
+  return render_template('index.html', hostIP=hostIP, hostName=os.uname()[1])
+
+@app.route('/video')
+def video():
+  return render_template('webframe.html')
+
+@app.route('/video1')
+def video1():
+  return render_template('webframe1.html')
+
+@app.route('/left/')
+def left():
+  os.system("/home/pi/python/flask/left.sh")
+  #print("Do Left")
+  return redirect("/")
+
+@app.route('/right/')
+def right():
+  os.system("/home/pi/python/flask/right.sh")
+  return redirect("/")
+
+@app.route('/shutdownquestion/')
+def shutdownquestion():
+  return render_template('shutdownquestion.html')
+
+@app.route('/shutdownno/')
+def shutdownno():
+  return render_template('index.html')
+
+@app.route('/shutdown/')
+def shutdown():
+  os.system("/usr/bin/sdc")
+  os.system("sudo cp /usr/bin/sd /usr/bin/sdc")
+  return redirect("/")
+
+@app.route('/reboot/')
+def reboot():
+  os.system("/usr/bin/src")
+  os.system("sudo cp /usr/bin/sr /usr/bin/src")
+  return redirect("/")
+
+@app.route('/up/')
+def up():
+  os.system("/home/pi/python/flask/up.sh")
+  return redirect("/")
+
+@app.route('/down/')
+def down():
+  os.system("/home/pi/python/flask/down.sh")
+  return redirect("/")
+
+@app.route('/neutral/')
+def neutral():
+  os.system("/home/pi/python/flask/neutral.sh")
+  return redirect("/")
+
+if __name__ == '__main__':
+  from waitress import serve
+  serve(app, host='0.0.0.0', port=5000)
+#if __name__ == '__main__':
+#  app.run(host='0.0.0.0', port=5000)
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ hostname }} web cam</title>
+	<meta http-equiv="refresh" content="60">
+<body>
+
+    <h2>{{ hostName }} Video {{ hostIP }}</h2>
+    <iframe width="650" height="370" src="http://{{ hostIP }}:8000"></iframe>
+    </iframe>
+    <form>
+        <button> <a href="/left/">Left</a></button>
+        <button> <a href="/right/">Right</a></button>
+        <button> <a href="/up/">Up</a></button>
+        <button> <a href="/down/">Down</a></button>
+        <button> <a href="/neutral/">Neutral</a></button>
+    </form>
+    <form>
+        <button> <a href="/timelapse/">Create Timelapse</a></button>
+        <button> <a href="/shutdownquestion/">Shutdown Pi</a></button>
+        <button> <a href="/reboot/">Reboot Pi</a></button>
+        <button> <a href="/startvideo/">Start Video Stream</a></button>
+        <button> <a href="/stopvideo/">Stop Video Stream</a></button>
+    </form>
+</body>
+</html>
+

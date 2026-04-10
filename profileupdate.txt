@@ -1,0 +1,9 @@
+
+# start web cam and web site program if logging on to console
+if [ `tty` == '/dev/tty1' ] ; then
+    echo "On console"
+    /home/pi/startscript.sh &
+else
+    echo "Not on console"
+fi
+

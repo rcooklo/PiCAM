@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h2>Start Timelapse</h2>
+    <form action="{{ url_for("timelapse")}}" method="post">
+      <label for="minutes">Minutes to record:</label>
+      <input type="text" id="minutes" name="minutes" placeholder="minutes">
+      <label for="lastname">Interval between pictures(seconds):</label>
+      <input type="text" id="interval" name="interval" placeholder="interval">
+      <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
