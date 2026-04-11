@@ -2,6 +2,14 @@
 echo "servo 90 90" >/home/pi/python/FIFO_piservo
 sudo rm /usr/bin/sdc 2>/dev/null
 sudo rm /usr/bin/src 2>/dev/null
-sleep 2
-echo "Shutting Down..."
-sudo shutdown -hP now
+if [ $1 = "-r" ]
+then
+  echo "Rebooting..."
+  sleep 4
+  sudo reboot
+else
+  echo "Shutting Down..."
+  sleep 4
+  sudo shutdown -hP now
+fi
+
